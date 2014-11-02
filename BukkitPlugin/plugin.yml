@@ -1,0 +1,47 @@
+name: LastStand
+main: com.gmail.wintersj7.laststand.LastStand
+version: 2.2.0
+author: Waffles87
+description: Players will persist after death for a short duration in a state of 'dying' and can be revived by other players.
+permissions:
+    laststand.*:
+        description: Gives access to laststand features except admin commands.
+        children:
+            laststand.dying_mode: true
+            laststand.revive_other: true
+    laststand.dying_mode:
+        description: Allows a player to persist after they would have died so someone can revive them.
+        default: true        
+    laststand.revive_other: 
+        description: Allows a player revive dying players.
+        default: true
+    laststand.revive_command: 
+        description: Allows usage of the laststand.revive command. Not included in laststand.*
+        default: op
+    laststand.reload:
+        description: Allows usage of the laststand.reload command. Not included in laststand.*
+        default: op
+commands:
+   laststand.revive:
+      description: Removes a player from laststand mode and restores them to full health and food.
+      usage: /<command> player [silent|quiet]
+      permission: laststand.revive_command
+      permission-message: You don't have the permission <permission>
+   ls.revive:
+      description: Convenience command for laststand.revive.
+      usage: /<command> player [silent|quiet]
+      permission: laststand.revive_command
+      permission-message: You don't have the permission <permission>
+   laststand.reload:
+      description: Reloads the LastStand configs.
+      usage: /<command> 
+      permission: laststand.reload
+      permission-message: You don't have the permission <permission>
+   ls.reload:
+      description: Convenience command for laststand.reload
+      usage: /<command> 
+      permission: laststand.reload
+      permission-message: You don't have the permission <permission>
+
+      
+      

@@ -1,0 +1,193 @@
+#########################################
+# Messages
+
+# Display a message to player when they begin to die?
+msg_do_display_start: true
+msg_start_dying: "You are severely wounded and are about to die!"
+
+# Broadcast a server message when a player starts to die?
+# All instances of <name> will be replaced by the dying player's name
+msg_do_broadcast_start: false
+msg_broadcast_start: "<name> is severely wounded and needs revival!"
+
+# Broadcast periodic server message when a player is dying?
+# All instances of <name> will be replaced by the dying player's name
+msg_do_broadcast_periodic: false
+msg_broadcast_periodic: "<name> is dying!"
+
+# Broadcast a server message when a player is revived?
+# All instances of <name1> will be replaced by the revivee's name
+# All instances of <name2> will be replaced by the reviver's name
+msg_do_broadcast_revival: false
+msg_broadcast_revival: "<name1> was revived by <name2>!"
+
+# Broadcast a server message when a player disconnects while dying?
+msg_do_broadcast_dc: true
+msg_broadcast_dc: "<name> logged out whilst dying and dropped all of their items!"
+
+# Message when player tries to switch item to one they can't use.
+msg_do_display_switch: true
+msg_switch_item: "You are too wounded to use that!"
+
+# Message when player tries to access inventory items while dying.
+msg_do_display_inventory: true
+msg_inventory_access: "You cannot access your items in this state!"
+
+# Message when player drops item in hand when they begin dying.
+msg_do_display_drop: true
+msg_drop_item: "You lost your grip on the item you were holding."
+
+# Message when player doesn't have the required item and tries to revive someone.
+msg_do_display_no_item: true
+msg_no_item: "You don't have the required item!"
+
+# Message when player disconnects while dying
+msg_do_display_dc: true
+msg_dc: "You logged out whilst dying and have dropped all your items!"
+
+# Broadcast a server message when a player kills another player?
+# All instances of <name1> will be replaced by the victim's name
+# All instances of <name2> will be replaced by the killer's name
+msg_do_broadcast_player_kill: false
+msg_broadcast_player_kill: "<name1> was mercilessly slain by <name2>!"
+
+
+########################################
+# Messages sent to everyone in a certain range 
+# (This section is really just an extension of Messages above but is separated for clarity.)
+
+# The range a player must be within to receive the messages below:
+# (This number is defined as "1/2 the size of the box" along each axis.)
+range_msgs_xz_blocks: 80
+range_msgs_y_blocks: 40
+
+# Message all players within the given range when a player begins to die?
+range_do_start: true
+range_msg_start_dying: "<name> is severely wounded and needs revival!"
+
+# Message all players within the given range periodically when a player is dying?
+range_do_periodic: true
+range_msg_periodic: "<name> is dying!"
+
+# Message all players within the given range when a player is revived?
+# All instances of <name1> will be replaced by the revivee's name
+# All instances of <name2> will be replaced by the reviver's name
+range_do_revival: true
+range_msg_revival: "<name1> was revived by <name2>!"
+
+#  Message all players within the given range when a player disconnects while dying?
+range_do_dc: false
+range_msg_dc: "<name> logged out whilst dying and dropped all of their items!"
+
+# Message all players within the given range when a player kills another player?
+# All instances of <name1> will be replaced by the victim's name
+# All instances of <name2> will be replaced by the killer's name
+range_do_player_kill: true
+range_msg_player_kill: "<name1> was mercilessly slain by <name2>!"
+
+
+########################################
+# Items
+
+# Will players drop all items if they logout while dying?
+# Does not affect dropping items normally upon death.
+items_do_drop: true
+
+# Items that can be used while dying.
+# Note- Don't include any food or anything that can restore the food bar.
+# Health-restoring items aren't a good idea either, as you will die when the food bar
+# runs out regardless of your health, which could be misleading.
+items_useable_list:
+ - WOOD_SWORD
+ - IRON_SWORD
+ - STONE_SWORD
+ - DIAMOND_SWORD
+ - BOW
+
+# Items that can be used to revive a player.
+# If ANY appears in the list then there are no item requirements to revive someone.
+items_to_revive:
+ - ANY
+
+# Does revival use up one of the required items?
+# Note- if items_to_revive is set to ANY, this config will be overridden to false.
+items_used_up: true
+
+########################################
+# Visual Effects
+
+ve_ender_pearl: true
+ve_smoke: true
+ve_sneak: true
+ve_damage: true
+ve_blindness: true
+
+
+########################################
+# Mechanics
+
+# Approx. time that dying mode will last/ 
+# how long you have to revive before you die. (seconds)
+# NOTE- the timer is the foodbar and moving/jumping will affect it.
+# NOTE- the foodlevel is set to time/5.
+time: 40
+
+# Walk speed while dying. 
+# NOTE- normal walk speed is 0.2
+walk_speed: 0.04
+
+# Damage types that will kill you instantly with no chance for revival (no laststand mode activated).
+# If set to false, players WILL be revivable if they die from that cause.
+falling_kills: false
+fire_kills: false
+burning_kills: false
+drowning_kills: true
+suffocation_kills: true
+starving_kills: true
+
+
+# Damage types that can still hurt (remove time from your foodbar) AND kill you once you are already dying. 
+# If false, players will be immune to that type of damage while they are dying. 
+falling_hurts: true
+fire_hurts: true
+burning_hurts: true
+drowning_hurts: true
+exploding_hurts: true
+suffocation_hurts: true
+
+
+# Health recovered when revived.
+revived_hp: 10
+
+# PvP Option
+# Note- even if this option is set to false, pvp can still be enabled on your server;
+# this just sets whether a player can hurt/kill another player who is dying.
+# If set to true, damage caused by players will be converted to damage to the remaining
+# foodbar (i.e. the time they have left) and if it reaches 0 they die instantly.
+# If set to false, players who are dying are invincible to players.
+player_kill_on: true
+
+# PvP Damage Mitigation
+# This number represents a percentage by which to apply damage when a player attacks a
+# player who is dying. (100 means 100% damage vs. dying players)
+# If left at 100, dying players are one-shot pretty much every time.
+# Values above 100 or below 1 will default to 100.
+player_kill_mitigation: 50
+
+
+# Revive players (remove them from laststand mode) if they are teleported.
+# This may be handy if you are using a plugin that uses spawnpoints that may be teleporting players
+# to a spawn point and cancelling the death effect. If set to false, teleporting will have no
+# effect on LastStand. 
+teleport_restore: true
+
+
+#############################################################
+# World Support
+
+# Worlds in which LastStand will activate.
+worlds_supported_list:
+ - world
+ - world_nether
+ - world_the_end
+
